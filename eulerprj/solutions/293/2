@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+import sys; 
+import os;
+import itertools;
+
+admissibleNumbers = []
+
+iMAX=10**9
+print "%x"%iMAX
+print "%x"%(2**30)
+
+f = open('primes1.txt', 'r')
+q = f.read()
+q = q.split()
+print len(q)
+
+prod=1.0
+i=0
+while prod < iMAX:
+    prod *= float(q[i])
+    print q[i], i, iMAX, prod
+    i+=1
+
+print i
+maxPrime=i
+
+maxPow=[ [] for i in range(0, maxPrime+1) ]
+for j in range(0,maxPrime+1):
+    maxPow[j]=range(1,31)
+
+def bfs_calc(primes, ppows_arg, idx):
+    retVal = False
+    ppows = list(ppows_arg)
+    prod = reduce(lambda x,y: x*y, itertools.imap(pow, primes, ppows_arg), 1)
+    retVal = (prod < iMAX)
+    if retVal:
+	admissibleNumbers.append(prod)
+    print retVal, prod, iMAX, idx, ppows_arg, primes
+    if idx >= len(ppows_arg): return retVal 
+    # descendant loop
+    while retVal == True: 
+	# incr this idx, re-calc desc
+	ppows[idx] += 1
+	retValDesc = bfs_calc(primes, ppows, idx+1)
+	if retValDesc == False:
+	    print "Desc:", retValDesc, prod, iMAX, ppows, primes
+	    break
+    return retVal
+
+
+for j in range(1,maxPrime+1):
+    subset_q = [ int(q[i]) for i in range(0,j)]
+    print "SUBSET:", subset_q
+    powvals = [ 1 for i in subset_q ]
+    powvals0 = list(powvals) 
+    bfs_calc(subset_q, powvals0, idx=0)
+
+
+admissibleNumbers.sort()
+print len(admissibleNumbers), admissibleNumbers
+
+for i in admissibleNumbers:
+    admissibleNumbers[i]/(10**6)
