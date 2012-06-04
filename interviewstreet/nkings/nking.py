@@ -29,25 +29,16 @@ class Board:
 
     # given tmp_k-rows for nxn board, find valid entries for k+1-th row
     def valid_pos_for_k_plus_1(self, tmp_k_vals):
-        tmp_k = len(tmp_k_vals)
-        if (tmp_k > self.n-1): return []
-        if tmp_k == 0: return range(0, self.n) # { 0 .. n-1 }
-        candidates = range(0, self.n) # { 0 .. n-1 }
-        # exclude all existing columns in tmp_k_vals  UNION { x in { pos[k]-1, pos[k], pos[k]+1 } | for x in { 0, n-1 } }
-        excl = range(max(0, tmp_k_vals[-1]-1), min(self.n-1, tmp_k_vals[-1]+1)+1) + tmp_k_vals 
-        return [x for x in candidates if not x in excl ]
+        ### REMOVED ### ask for passwd to enc file
+        pass
 
     def count_valid_boards(self, cur_k_vals=None):
         if cur_k_vals is None: cur_k_vals = self.k_vals
         # for each row r, recursively find valid positions for r
         valid_k_vals = self.valid_pos_for_k_plus_1(cur_k_vals)
         for kval in valid_k_vals:
-            ### print self, cur_k_vals + [kval] 
-            if len(cur_k_vals) == self.n-1:
-                self.num_count += 1
-                #print cur_k_vals + [kval]
-            else:
-                self.count_valid_boards(cur_k_vals + [kval])
+            ### REMOVED ### ask for passwd to enc file
+            pass
             
 
 ############################################################
