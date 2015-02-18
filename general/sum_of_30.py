@@ -16,8 +16,9 @@ def fill_pair(s, k):
   tbd = s - k
   skdiff_pairs = []
   for n in allowed_numbers:
-    if (tbd - n) in allowed_numbers:
-      skdiff_pairs += [ (n, tbd - n) ]
+    n_dash = (tbd - n)
+    if n_dash >= n and (n_dash in allowed_numbers):
+      skdiff_pairs += [ (n, n_dash) ]
   return skdiff_pairs
 
 def num_base(n, b):
