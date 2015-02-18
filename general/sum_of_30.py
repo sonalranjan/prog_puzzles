@@ -4,6 +4,11 @@ import os
 import sys
 import itertools
 
+#
+# Fill in 3 boxes with numbers from allowed_numbers to get a sum of 30
+# This is a variation with a box filled with (number)base kind of expression
+#
+
 allowed_numbers = [ k for k in range(1,16, 2)]
 LOOKUP_DICT = dict([(k, int(k)) for k in '0123456789'])
 
