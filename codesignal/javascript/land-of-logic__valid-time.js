@@ -1,3 +1,6 @@
+
+// https://app.codesignal.com/arcade/intro/level-12/ywMyCTspqGXPWRZx5
+
 function solution(time) {
     let hhmm = time.split(":")
     if (hhmm.length != 2) {
